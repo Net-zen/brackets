@@ -1,6 +1,4 @@
 module.exports = function check(str, bracketsConfig) {
-  // your solution
-
   const bracketsStack = [];
   let res = true;
     for (let i = 0; i < str.length; i++) {

@@ -11,7 +11,7 @@ module.exports = function check(str, bracketsConfig) {
                   bracketsStack.push(str[i]);
                 }
               } else if (str[i] === element[1]){
-                  if (bracketsStack.length === 0){
+                  if (!bracketsStack.length){
                     res = false;
                   } else  if (bracketsStack[bracketsStack.length - 1] === element[0]){
                     bracketsStack.pop();
@@ -21,8 +21,7 @@ module.exports = function check(str, bracketsConfig) {
           });
       }
     } 
-    (bracketsStack.length !== 0 || !res) ? res = false : res = true;
-    return res;
+    return (bracketsStack.length || !res) ?  false : true;
 }
 
 

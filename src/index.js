@@ -3,9 +3,8 @@ module.exports = function check(str, bracketsConfig) {
 
   const bracketsStack = [];
   let res = true;
-  let stop = false;
     for (let i = 0; i < str.length; i++) {
-      if (!stop){
+      if (res){
           bracketsConfig.forEach(element => {
               if (str[i] === element[0]){
                 if (str[i] === element[1] && str[i] === bracketsStack[bracketsStack.length - 1] ){
@@ -15,7 +14,6 @@ module.exports = function check(str, bracketsConfig) {
                 }
               } else if (str[i] === element[1]){
                   if (bracketsStack.length === 0){
-                    stop = true;
                     res = false;
                     return false;
                   } else  if (bracketsStack[bracketsStack.length - 1] === element[0]){
@@ -26,7 +24,7 @@ module.exports = function check(str, bracketsConfig) {
           });
       }
     } 
-    (bracketsStack.length !== 0 || stop) ? res = false : res = true;
+    (bracketsStack.length !== 0 || !res) ? res = false : res = true;
     return res;
 }
 
